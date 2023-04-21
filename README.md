@@ -1,4 +1,5 @@
-## [Spring Portfolio Starter](https://nighthawkcodingsociety.com/projectsearch/details/Spring%20Portfolio%20Starter)
+# Backend Repo for Aurora
+## Sanjay B, Karthik V, Evan Y
 #### Runtime link: https://spring.nighthawkcodingsociety.com/
 #### Jokes endpoint: https://spring.nighthawkcodingsociety.com/api/jokes/
 #### JWT Login: https://nighthawkcoders.github.io/APCSA/data/login
