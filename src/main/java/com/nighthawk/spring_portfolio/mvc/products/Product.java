@@ -1,10 +1,17 @@
 package com.nighthawk.spring_portfolio.mvc.products;
 
 import java.sql.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+import antlr.collections.List;
 
 
 public class Product {
-   public static void insert() {
+   public static void insert(String name, int price, String description,int inStock) {
       Connection c = null;
       Statement stmt = null;
       
@@ -15,8 +22,8 @@ public class Product {
          System.out.println("Opened database successfully");
 
          stmt = c.createStatement();
-         String sql = "INSERT INTO PRODUCT (NAME,PRICE,DESCRIPTION,INSTOCK) " +
-                        "VALUES ('Stem Cell', 1000, 'no idea', 1 );"; 
+         String sql = String.format("INSERT INTO PRODUCT (NAME,PRICE,DESCRIPTION,INSTOCK) " +
+         "VALUES ('%s', %d, '%s',%d );",name,price,description,inStock); 
          stmt.executeUpdate(sql);
 
 
@@ -30,8 +37,10 @@ public class Product {
       System.out.println("Records created successfully");
 
    }
+   
+
    public static void main( String args[] ) {
-      Product.insert();
+      Product.insert("protein",500,"idk",1);
    }
 }
 
