@@ -141,7 +141,56 @@ public class Cart {
 
    }
 
-   
+   public void deleteItem(int id) {
+    Connection c = null;
+    Statement stmt = null;
+    
+    try {
+       Class.forName("org.sqlite.JDBC");
+       c = DriverManager.getConnection("jdbc:sqlite:products.db");
+       c.setAutoCommit(false);
+       System.out.println("Opened database successfully");
+
+       stmt = c.createStatement();
+       String sql = String.format("DELETE from CART where ID=%d;",id);
+       stmt.executeUpdate(sql);
+       
+       stmt.close();
+       c.commit();
+       c.close();
+    } catch ( Exception e ) {
+       System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+       System.exit(0);
+    }
+    System.out.println("Records created successfully");
+    }
+
+    public void updateData(int id, int quantity) {
+        Connection c = null;
+        Statement stmt = null;
+        
+        try {
+           Class.forName("org.sqlite.JDBC");
+           c = DriverManager.getConnection("jdbc:sqlite:products.db");
+           c.setAutoCommit(false);
+           System.out.println("Opened database successfully");
+  
+           stmt = c.createStatement();
+           String sql =String.format("UPDATE PRODUCT set QUANTITY = %d where ID=%d;",quantity,id);
+           stmt.executeUpdate(sql);
+  
+           stmt.close();
+           c.commit();
+           c.close();
+        } catch ( Exception e ) {
+           System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+           System.exit(0);
+        }
+        System.out.println("Records created successfully");
+  
+     }
+  
+
     public static void main( String args[] ) {
       Cart cart = new Cart();
       System.out.println(cart.get_data());
