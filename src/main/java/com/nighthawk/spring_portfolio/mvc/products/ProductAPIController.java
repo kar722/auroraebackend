@@ -52,6 +52,16 @@ public class ProductAPIController {
         return new ResponseEntity<>(body,HttpStatus.OK);
     }
 
+    @GetMapping("/getProducts/{id}")
+    public ResponseEntity<JSONObject> getProducts(@PathVariable int id) {
+        Product product = new Product();
+        JSONArray result = product.get_data(id);
+        this.body = new JSONObject();
+        this.body.put("data", result);
+        return new ResponseEntity<>(body,HttpStatus.OK);
+    }
+
+
     @PutMapping("/update/{id}/{name}/{price}/{description}/{inStock}")
     public ResponseEntity<JSONObject> Update(@PathVariable int id,@PathVariable String name,@PathVariable int price, @PathVariable String description, @PathVariable int inStock) throws Exception {
         Product product = new Product();
