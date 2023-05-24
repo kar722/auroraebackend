@@ -39,6 +39,14 @@ public class CartAPIController {
         this.body.put("data", result);
         return new ResponseEntity<>(body,HttpStatus.OK);
     }
+    @GetMapping("/getCart")
+    public ResponseEntity<JSONObject> getCart() {
+        Cart cart = new Cart();
+        JSONArray result = cart.get_data();
+        this.body = new JSONObject();
+        this.body.put("data", result);
+        return new ResponseEntity<>(body,HttpStatus.OK);
+    }
 
     @PostMapping("/addItem/{item}/{user}/{quantity}")
     public ResponseEntity<JSONObject> addItem(@PathVariable int item,@PathVariable String user,@PathVariable int quantity) {
