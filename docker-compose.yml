@@ -14,4 +14,4 @@ volumes:
     driver_opts:
       o: bind
       type: none
-      device: /home/ubuntu/t3_aurorae/auroraebackend/volumes
+      device: /home/ubuntu/tri3/t3_aurorae/auroraebackend/volumes
