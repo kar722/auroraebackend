@@ -10,7 +10,7 @@ import org.json.simple.JSONObject;
 
 public class Cart {
    
-   public void insert(int item, String user, int quantity) {
+   public void insert(int item, String user, int quantity,int uid) {
       Connection c = null;
       Statement stmt = null;
       
@@ -21,8 +21,8 @@ public class Cart {
          System.out.println("Opened database successfully");
 
          stmt = c.createStatement();
-         String sql = String.format("INSERT INTO CART (ITEM,USER,QUANTITY) " +
-         "VALUES (%d, '%s', %d );",item,user,quantity); 
+         String sql = String.format("INSERT INTO CART (ITEM,USER,QUANTITY,UID) " +
+         "VALUES (%d, '%s', %d,%d );",item,user,quantity,uid); 
          stmt.executeUpdate(sql);
 
 
@@ -89,7 +89,7 @@ public class Cart {
 
    }
 
-   public JSONArray get_data(String user) {
+   public JSONArray get_data(int uid) {
       Connection c = null;
       Statement stmt = null;
       try {
@@ -99,7 +99,7 @@ public class Cart {
          System.out.println("Opened database successfully");
    
          stmt = c.createStatement();
-         ResultSet rs = stmt.executeQuery( String.format("SELECT * FROM CART WHERE USER='%s';",user) );
+         ResultSet rs = stmt.executeQuery( String.format("SELECT * FROM CART WHERE UID=%d;",uid) );
 
          ResultSetMetaData md = rs.getMetaData();
          int numCols = md.getColumnCount();
@@ -192,8 +192,11 @@ public class Cart {
   
 
     public static void main( String args[] ) {
-      Cart cart = new Cart();
-      System.out.println(cart.get_data());
+      // Cart cart = new Cart();
+      Connection c = null;
+      Statement stmt = null;
+
+      // System.out.println(cart.get_data());
     }
  }
 //  "CREATE TABLE CART " +

@@ -32,9 +32,9 @@ public class CartAPIController {
     String last_run = null; //last run day of month
 
     @GetMapping("/getCart/{user}")
-    public ResponseEntity<JSONObject> getCart(@PathVariable String user) {
+    public ResponseEntity<JSONObject> getCart(@PathVariable int uid) {
         Cart cart = new Cart();
-        JSONArray result = cart.get_data(user);
+        JSONArray result = cart.get_data(uid);
         this.body = new JSONObject();
         this.body.put("data", result);
         return new ResponseEntity<>(body,HttpStatus.OK);
@@ -48,10 +48,10 @@ public class CartAPIController {
         return new ResponseEntity<>(body,HttpStatus.OK);
     }
 
-    @PostMapping("/addItem/{item}/{user}/{quantity}")
-    public ResponseEntity<JSONObject> addItem(@PathVariable int item,@PathVariable String user,@PathVariable int quantity) {
+    @PostMapping("/addItem/{item}/{user}/{quantity}/{uid}")
+    public ResponseEntity<JSONObject> addItem(@PathVariable int item,@PathVariable String user,@PathVariable int quantity,@PathVariable int uid) {
         Cart cart = new Cart();
-        cart.insert(item,user,quantity);
+        cart.insert(item,user,quantity,uid);
         JSONArray result = cart.get_data();
         this.body = new JSONObject();
         this.body.put("data", result);
