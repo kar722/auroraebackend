@@ -6,12 +6,5 @@ services:
     ports:
       - "8041:8041"
     volumes:
-      - persistent_volume:/app/volumes
+      - ./volumes:/volumes
     restart: unless-stopped
-volumes:
-  persistent_volume:
-    driver: local
-    driver_opts:
-      o: bind
-      type: none
-      device: /home/ubuntu/tri3/t3_aurorae/auroraebackend/volumes
