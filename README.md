@@ -1,4 +1,4 @@
-# Backend Repo for Aurora
+# Backend Repo for Aurorae
 ## Sanjay B, Karthik V, Evan Y
 #### Runtime link: https://spring.nighthawkcodingsociety.com/
 #### Jokes endpoint: https://spring.nighthawkcodingsociety.com/api/jokes/
